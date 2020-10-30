@@ -6,6 +6,9 @@ public class Heath : MonoBehaviour
 {
     private int MaxHP = 100;  
     public int CurrentHP;
+    public int fullH=0;
+    public int IsHealer = 0;
+
 
     private void Start()
     {
@@ -23,5 +26,29 @@ public class Heath : MonoBehaviour
            Destroy(this.gameObject);
         }
     }
-   
+
+    public void Takeheal(int H)
+    {
+
+        CurrentHP += H;
+        Debug.Log(gameObject.name + " take " + H + " heal " + "hp=" + CurrentHP);
+      
+    }
+
+
+    void Update()
+    {
+
+        if (CurrentHP < MaxHP)
+        {
+            fullH = 1;
+        }
+        else
+        {
+            fullH = 0;
+        }
+
+    }
+
+
 }
