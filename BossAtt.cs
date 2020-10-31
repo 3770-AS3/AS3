@@ -18,8 +18,8 @@ public class BossAtt : MonoBehaviour
     private float attackCD;
     private float aoeCD;
 
-    //all players who take aoe demage.
     public GameObject Tank;
+    //All players who take aoe demage. 
     public GameObject Rogue;
     public GameObject Mage;
     public GameObject Druid;
