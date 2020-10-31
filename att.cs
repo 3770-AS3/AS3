@@ -6,7 +6,7 @@ public class att : MonoBehaviour
 {
     public GameObject T;
     public int dps=10;
-
+    private float attCD;
     void attecktarget()
     {
         T.GetComponent<Heath>().TakeDamage(dps);
@@ -16,7 +16,7 @@ public class att : MonoBehaviour
 
     void Start()
     {
-        
+        attCD = 2;
     }
 
     void Update()
@@ -26,8 +26,15 @@ public class att : MonoBehaviour
         
       var dis = Vector3.Distance(aa.transform.position, bb.transform.position);
          if (dis < 1.0)
-        { 
-            attecktarget(); 
+        {     
+                //When CD <= 0, Do it then reset.
+                attCD -= Time.deltaTime;
+               
+                if (attCD <= 0)
+                {
+                attecktarget();
+                attCD = 2;
+                }                        
         }
            
     }
