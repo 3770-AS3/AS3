@@ -14,18 +14,52 @@ public class heal : MonoBehaviour
     private int n = 0;
     private int rand;
 
-    void Smallheal()
+    Boolean Smallheal()
     {
-        (whichone()).GetComponent<Heath>().Takeheal(smallH);
-        Debug.Log("heal " + smallH + " to " + (whichone()).name);
-        CurrentMANA -= 5;
+        if (CurrentMANA >= 5)
+        {
+            (whichone()).GetComponent<Heath>().Takeheal(smallH);
+            Debug.Log("heal " + smallH + " to " + (whichone()).name);
+            CurrentMANA -= 5;
+            return true;
+        }
+        return false;
     }
 
-void Bigheal()
+
+
+    void freespell()
     {
-        T.GetComponent<Heath>().Takeheal(bigH);
-        Debug.Log("heal " + bigH + " to " + T.name);
-        CurrentMANA -= 8;
+        if (T.GetComponent<Heath>().CurrentHP <= 1500)
+        {
+            System.Random rm = new System.Random();
+            int number = rm.Next(0, 1);
+            if (number == 1)
+            {
+                Smallheal();
+                CurrentMANA += 5;
+            }
+            else
+            {
+                Bigheal();
+                CurrentMANA += 8;
+            }
+        }
+    }
+
+
+
+
+    Boolean Bigheal()
+    {
+        if (CurrentMANA >= 8)
+        {
+            T.GetComponent<Heath>().Takeheal(bigH);
+            Debug.Log("heal " + bigH + " to " + T.name);
+            CurrentMANA -= 8;
+            return true;
+        }
+        return false;
     }
 
 
@@ -38,7 +72,7 @@ void Bigheal()
      GameObject whichone()
     {
         GameObject[] Friend;
-        Friend = GameObject.FindGameObjectsWithTag("player");
+        Friend = GameObject.FindGameObjectsWithTag("Freindly");
         GameObject[] needHeal = null;
         
         for(int i = 0; i< 5; i++)
