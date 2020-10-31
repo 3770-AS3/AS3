@@ -9,7 +9,7 @@ public class BossAtt : MonoBehaviour
     
 
     public int dps = 50;
-    public int aoeDps = 12;
+    public int aoeDps = 14;
     public int damageInThisTimeStep; //It has to add 100th of to total damage first, then attack.
 
     public float totalDmg;
