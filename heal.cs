@@ -115,6 +115,12 @@ public class heal : MonoBehaviour
 
     void Update()
     {
+        SmallhealCD -= Time.deltaTime;
+        freespellCD -= Time.deltaTime;
+        BighealCD -= Time.deltaTime;
+    
+    
+    
         if (SmallhealCD <= 0) 
         {
             if (Smallheal() == true)
