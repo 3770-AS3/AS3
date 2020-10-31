@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossAtt : MonoBehaviour
 {
@@ -19,11 +19,11 @@ public class BossAtt : MonoBehaviour
     private float aoeCD;
 
     //all players who take aoe demage.
-    public GameObject p1;
-    public GameObject p2;
-    public GameObject p3;
-    public GameObject p4;
-    public GameObject p5;
+    public GameObject Warrior;
+    public GameObject Rogue;
+    public GameObject Mage;
+    public GameObject Druid;
+    public GameObject Priest;
 
     void Start()
     {
@@ -55,8 +55,14 @@ public class BossAtt : MonoBehaviour
     void attacktarget()
     {
         //totalDmg += dps;
-        addDmg = (int)(totalDmg / 100);
-        damageInThisTimeStep = dps + addDmg;
+        if (SceneManager.GetActiveScene().name.Equals("Level3"))
+        {
+            extraDamageInLevel3();
+        }
+        else 
+        {
+            damageInThisTimeStep = dps;
+        }
        
         Debug.Log("make " + totalDmg + " to " + T.name);
 
@@ -70,16 +76,26 @@ public class BossAtt : MonoBehaviour
     void aoeAttack() 
     {
         //Aoe damage to 5 players
-        p1.GetComponent<Heath>().TakeDamage(aoeDps);
+        Warrior.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
-        p2.GetComponent<Heath>().TakeDamage(aoeDps);
+
+        Rogue.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
-        p3.GetComponent<Heath>().TakeDamage(aoeDps);
+
+        Mage.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
-        p4.GetComponent<Heath>().TakeDamage(aoeDps);
+
+        Druid.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
-        p5.GetComponent<Heath>().TakeDamage(aoeDps);
+
+        Priest.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
+    }
+
+    void extraDamageInLevel3() 
+    {
+        addDmg = (int)(totalDmg / 100);
+        damageInThisTimeStep = dps + addDmg;
     }
 
 
