@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BossAtt : MonoBehaviour
 {
-    public GameObject T;
+    
 
     public int dps = 50;
     public int aoeDps = 12;
@@ -19,7 +19,7 @@ public class BossAtt : MonoBehaviour
     private float aoeCD;
 
     //all players who take aoe demage.
-    public GameObject Warrior;
+    public GameObject Tank;
     public GameObject Rogue;
     public GameObject Mage;
     public GameObject Druid;
@@ -27,7 +27,7 @@ public class BossAtt : MonoBehaviour
 
     void Start()
     {
-       T = GameObject.Find("Tank");
+       Tank = GameObject.Find("Tank");
        totalDmg = 0;
        addDmg = 0;
        damageInThisTimeStep = 0;
@@ -66,7 +66,7 @@ public class BossAtt : MonoBehaviour
        
         Debug.Log("make " + totalDmg + " to " + T.name);
 
-        T.GetComponent<Heath>().TakeDamage(damageInThisTimeStep);
+        Tank.GetComponent<Heath>().TakeDamage(damageInThisTimeStep);
 
         //Update total damage after deal damage.
         totalDmg += damageInThisTimeStep;
@@ -76,9 +76,7 @@ public class BossAtt : MonoBehaviour
     void aoeAttack() 
     {
         //Aoe damage to 5 players
-        Warrior.GetComponent<Heath>().TakeDamage(aoeDps);
-        totalDmg += aoeDps;
-
+        
         Rogue.GetComponent<Heath>().TakeDamage(aoeDps);
         totalDmg += aoeDps;
 
