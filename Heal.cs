@@ -28,7 +28,7 @@ public class heal : MonoBehaviour
 
 
 
-    void freespell()
+    void freespell()     //lv1奶妈就把这玩意删了
     {
         if (T.GetComponent<Heath>().CurrentHP <= 1500)
         {
