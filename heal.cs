@@ -34,7 +34,7 @@ public class heal : MonoBehaviour
 
 
 
-    void freespell()     //lv1奶妈就把这玩意删了
+    void freespell()     //lv1奶妈就把这玩意删了 //已改成除了level1都释放
     {
         //If it is not in the level one, trigger the following
         if (!SceneManager.GetActiveScene().name.Equals("Level1")) 
@@ -133,7 +133,11 @@ public class heal : MonoBehaviour
 
         }
 
-        freespell();
+        if (freespellCD <= 0)
+        {
+            freespell();
+            freespellCD = 3;
+        } 
 
         if (CurrentMANA < MANA)
         {
